@@ -4,8 +4,20 @@
 ### GET all items
 GET http://localhost:3000/items
 
+### GET item with id 1
+GET http://localhost:3000/items/1
+
 ### Add new item
 POST http://localhost:3000/items
 Content-Type: application/json
 
 {"name": "Mandariini"}
+
+### Delete item with id 2
+DELETE http://localhost:3000/items/2
+
+### Update item with id 1
+PUT http://localhost:3000/items/1
+Content-Type: application/json
+
+{"name": "updated Omena"}
