@@ -43,6 +43,11 @@ const deleteItemById = (req, res) => {
 
 const postNewItem = (req, res) => {
   //console.log('add item request body', req.body);
+  // name is mandatory property for new item
+  if (!req.body.name) {
+    // jos nimi puuttuu, funktion suoritus loppuu ja palautetaan 400 error
+    return res.status(400).json({message: 'bad request'});
+  }
   //lisää id listaan lisättävälle objektille
   const newId =
     items.length > 0 ? Math.max(...items.map((item) => item.id)) + 1 : 1;
