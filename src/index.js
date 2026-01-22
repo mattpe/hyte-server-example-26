@@ -1,5 +1,12 @@
 import express from 'express';
-import {deleteItemById, getItemById, getItems, postNewItem, putItemById} from './items.js';
+import {
+  deleteItemById,
+  getItemById,
+  getItems,
+  postNewItem,
+  putItemById,
+} from './items.js';
+import {getUsers, postUser} from './users.js';
 const hostname = '127.0.0.1';
 const app = express();
 const port = 3000;
@@ -28,8 +35,10 @@ app.delete('/api/items/:id', deleteItemById);
 app.post('/api/items', postNewItem);
 
 // Users resource endpoints
-app.get('')
-
+// GET all users
+app.get('/api/users', getUsers);
+// POST new user
+app.post('/api/users', postUser);
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

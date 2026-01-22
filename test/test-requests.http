@@ -22,3 +22,28 @@ PUT {{apiurl}}/items/1
 Content-Type: application/json
 
 {"name": "updated Omena"}
+
+##############################
+### users endpoints
+
+### Get all users
+GET {{apiurl}}/users
+
+### Register new user
+POST {{apiurl}}/users
+Content-Type: application/json
+
+{
+  "username": "donald",
+  "password": "duck",
+  "email": "donald@example.com"
+}
+
+### Register new user FAIL (email missing)
+POST {{apiurl}}/users
+Content-Type: application/json
+
+{
+  "username": "donald",
+  "password": "duck"
+}
