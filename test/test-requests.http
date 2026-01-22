@@ -47,3 +47,12 @@ Content-Type: application/json
   "username": "donald",
   "password": "duck"
 }
+
+### User login
+POST {{apiurl}}/users/login
+Content-Type: application/json
+
+{
+  "username": "donald",
+  "password": "duck"
+}
