@@ -1,4 +1,4 @@
--- Drop the database if it exists and then create it
+-- Drop the database if it exists and then create it (root account needed)
 DROP DATABASE IF EXISTS HealthDiary;
 CREATE DATABASE HealthDiary;
 
