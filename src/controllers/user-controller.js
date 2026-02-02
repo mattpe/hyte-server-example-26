@@ -32,7 +32,7 @@ const postUser = (pyynto, vastaus) => {
   // ominaisuudet ja lisätään users-taulukon loppuun
   users.push({id: newId, ...newUser});
   delete newUser.password;
-  console.log('users', users);
+  // console.log('users', users);
   vastaus.status(201).json({message: 'new user added', user_id: newId});
 };
 
