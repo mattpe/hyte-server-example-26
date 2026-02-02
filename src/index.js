@@ -1,12 +1,7 @@
 import express from 'express';
-import {
-  deleteItemById,
-  getItemById,
-  getItems,
-  postNewItem,
-  putItemById,
-} from './items.js';
+
 import {getUsers, postLogin, postUser} from './users.js';
+import itemRouter from './routes/item-router.js';
 const hostname = '127.0.0.1';
 const app = express();
 const port = 3000;
@@ -22,17 +17,8 @@ app.get('/api', (req, res) => {
   res.send('This is dummy items API!');
 });
 
-// Endpoints for 'items' resource
-// Get all items
-app.get('/api/items', getItems);
-// Get item based on id
-app.get('/api/items/:id', getItemById);
-// PUT route for items
-app.put('/api/items/:id', putItemById);
-// DELETE route for items
-app.delete('/api/items/:id', deleteItemById);
-// Add new item
-app.post('/api/items', postNewItem);
+// Dummy items resource
+app.use('/api/items', itemRouter);
 
 // Users resource endpoints
 // GET all users
