@@ -1,7 +1,13 @@
-import users from '../models/user-model.js';
+// HUOM: mokkidata on poistettu modelista
+//import users from '../models/user-model.js';
 
-//TODO: add users endpoints
+import {findUserByUsername} from '../models/user-model.js';
 
+
+// TODO: lisää tietokantafunktiot user modeliin
+// ja käytä niitä täällä
+
+// TODO: refaktoroi tietokantafunktiolle
 const getUsers = (req, response) => {
   // ÄLÄ IKINÄ lähetä salasanoja HTTP-vastauksessa
   for (let i = 0; i < users.length; i++) {
@@ -17,6 +23,7 @@ const getUsers = (req, response) => {
 // TODO: deleteUserById
 
 // Käyttäjän lisäys (rekisteröityminen)
+// TODO: refaktoroi tietokantafunktiolle
 const postUser = (pyynto, vastaus) => {
   const newUser = pyynto.body;
   // Uusilla käyttäjillä pitää olla kaikki vaaditut ominaisuudet tai palautetaan virhe
@@ -36,14 +43,17 @@ const postUser = (pyynto, vastaus) => {
   vastaus.status(201).json({message: 'new user added', user_id: newId});
 };
 
-const postLogin = (req, res) => {
+
+// Tietokantaversio valmis
+const postLogin = async (req, res) => {
   const {username, password} = req.body;
   // haetaan käyttäjä-objekti käyttäjän nimen perusteella
-  const userFound = users.find(user => username === user.username);
-  if (userFound) {
-    if (userFound.password === password) {
-      delete userFound.password;
-      return res.json({message: 'login ok', user: userFound});
+  const user = await findUserByUsername(username);
+  //console.log('postLogin user from db', user);
+  if (user) {
+    if (user.password === password) {
+      delete user.password;
+      return res.json({message: 'login ok', user: user});
     }
     return res.status(403).json({error: 'invalid password'});
   }

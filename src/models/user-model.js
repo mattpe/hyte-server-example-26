@@ -1,32 +1,16 @@
-/**
- * Mock data and endpoints for users resource
- */
-
 import promisePool from '../utils/database.js';
 
-console.log('db connection test');
-promisePool.query('SELECT * FROM Users')
 
+// TODO: lisää modelit ja muokkaa kontrollerit reiteille:
+// GET /api/users - list all users
+// GET /api/users/:id - get user by id
+// POST /api/users - add a new user
 
-const users = [
-  {
-    id: 1,
-    username: 'johndoe',
-    password: 'password1',
-    email: 'johndoe@example.com',
-  },
-  {
-    id: 2,
-    username: 'janedoe',
-    password: 'password2',
-    email: 'janedoe@example.com',
-  },
-  {
-    id: 3,
-    username: 'bobsmith',
-    password: 'password3',
-    email: 'bobsmith@example.com',
-  },
-];
+// Huom: virheenkäsittely puuttuu
+const findUserByUsername = async (username) => {
+  const sql = 'SELECT * FROM Users WHERE username = ?';
+  const [rows] = await promisePool.execute(sql, [username]);
+  return rows[0];
+};
 
-export default users;
+export {findUserByUsername};

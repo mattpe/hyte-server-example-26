@@ -9,7 +9,8 @@ const listAllEntries = async () => {
     //const result = await promisePool.query('SELECT * FROM DiaryEntries');
     //console.log('sql query result', result);
     //const rows = result[0];
-    console.log('rows', rows);
+
+    //console.log('rows', rows);
     return rows;
   } catch (e) {
     console.error('error', e.message);
@@ -25,7 +26,7 @@ const findEntryById = async (id) => {
     // turvaton tapa, mahdollistaa sql-injektiohaavoittuvuuden:
     //const [rows] = await promisePool.query('SELECT * FROM DiaryEntries WHERE entry_id =' + id);
 
-    console.log('rows', rows);
+    //console.log('rows', rows);
     return rows[0];
   } catch (e) {
     console.error('error', e.message);
@@ -39,9 +40,9 @@ const addEntry = async (entry) => {
                VALUES (?, ?, ?, ?, ?, ?)`;
   const params = [user_id, entry_date, mood, weight, sleep_hours, notes];
   try {
-    const rows = await promisePool.execute(sql, params);
-    console.log('rows', rows);
-    return {entry_id: rows[0].insertId};
+    const result = await promisePool.execute(sql, params);
+    //console.log('insert result', result);
+    return {entry_id: result[0].insertId};
   } catch (e) {
     console.error('error', e.message);
     return {error: e.message};
