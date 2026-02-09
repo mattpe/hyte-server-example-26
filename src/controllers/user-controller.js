@@ -64,4 +64,10 @@ const postLogin = async (req, res) => {
   res.status(404).json({error: 'user not found'});
 };
 
-export {getUsers, postUser, postLogin};
+// Get user information stored inside token
+const getMe = (req, res) => {
+  res.json(req.user);
+};
+
+
+export {getUsers, postUser, postLogin, getMe};

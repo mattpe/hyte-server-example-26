@@ -1,6 +1,7 @@
 # Test HTTP requests
 ### use with: REST Client extension
 @apiurl = http://localhost:3000/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6ImJvYl9icm93biIsImVtYWlsIjoiYm9iQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDEtMDVUMDU6NDU6MDAuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzcwNjQwNzUzLCJleHAiOjE3NzA3MjcxNTN9.0c3R1r0jZWRmVRZkIsBPiqWkwsKj62BEzdkVVfpdzjo
 
 ### GET all items
 GET {{apiurl}}/items
@@ -57,6 +58,10 @@ Content-Type: application/json
   "password": "hashed_password"
 }
 
+### Get user info by token
+GET {{apiurl}}/users/me
+Authorization: Bearer {{token}}
+
 
 ##############################
 ### Diary entry endpoints
@@ -70,9 +75,9 @@ GET {{apiurl}}/entries/6
 ### Post new entry
 POST {{apiurl}}/entries
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "user_id": 3,
   "entry_date": "2026-02-04",
   "mood": "really happy",
   "weight": 66,
