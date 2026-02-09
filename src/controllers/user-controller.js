@@ -1,8 +1,8 @@
 // HUOM: mokkidata on poistettu modelista
 //import users from '../models/user-model.js';
 
+import jwt from 'jsonwebtoken';
 import {findUserByUsername} from '../models/user-model.js';
-
 
 // TODO: lisää tietokantafunktiot user modeliin
 // ja käytä niitä täällä
@@ -43,7 +43,6 @@ const postUser = (pyynto, vastaus) => {
   vastaus.status(201).json({message: 'new user added', user_id: newId});
 };
 
-
 // Tietokantaversio valmis
 const postLogin = async (req, res) => {
   const {username, password} = req.body;
@@ -53,7 +52,12 @@ const postLogin = async (req, res) => {
   if (user) {
     if (user.password === password) {
       delete user.password;
-      return res.json({message: 'login ok', user: user});
+      // generate & sign token using a secret and expiration time
+      // read from .env file
+      const token = jwt.sign(user, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+      });
+      return res.json({message: 'login ok', user, token});
     }
     return res.status(403).json({error: 'invalid password'});
   }
