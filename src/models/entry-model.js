@@ -5,12 +5,17 @@ import promisePool from '../utils/database.js';
 const listAllEntries = async () => {
   try {
     const [rows] = await promisePool.query('SELECT * FROM DiaryEntries');
-    // sama sijoituslause perinteisemmin:
-    //const result = await promisePool.query('SELECT * FROM DiaryEntries');
-    //console.log('sql query result', result);
-    //const rows = result[0];
+    return rows;
+  } catch (e) {
+    console.error('error', e.message);
+    return {error: e.message};
+  }
+};
 
-    //console.log('rows', rows);
+const listAllEntriesByUserId = async (id) => {
+  try {
+    const sql = 'SELECT * FROM DiaryEntries WHERE user_id = ?';
+    const [rows] = await promisePool.execute(sql, [id]);
     return rows;
   } catch (e) {
     console.error('error', e.message);
@@ -49,4 +54,11 @@ const addEntry = async (entry) => {
   }
 };
 
-export {listAllEntries, findEntryById, addEntry};
+const removeEntryById = async (entryId, userId) => {
+  const sql = 'DELETE from DiaryEntries WHERE entry_id = ? AND user_id = ?';
+  const [result] = await promisePool.execute(sql, [entryId, userId]);
+  //console.log('remove entry by id', result);
+  return result.affectedRows;
+};
+
+export {listAllEntries, findEntryById, addEntry, listAllEntriesByUserId, removeEntryById};

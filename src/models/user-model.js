@@ -2,8 +2,14 @@ import promisePool from '../utils/database.js';
 
 
 // TODO: lisää modelit ja muokkaa kontrollerit reiteille:
-// GET /api/users - list all users
 // GET /api/users/:id - get user by id
+
+// GET /api/users - list all users
+const listAllUsers = async () => {
+  const sql = 'SELECT username, created_at FROM Users';
+  const [rows] = await promisePool.query(sql);
+  return rows;
+};
 
 // POST /api/users - add a new user
 const addUser = async (user) => {
@@ -28,4 +34,4 @@ const findUserByUsername = async (username) => {
   return rows[0];
 };
 
-export {findUserByUsername, addUser};
+export {findUserByUsername, addUser, listAllUsers};

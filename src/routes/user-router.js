@@ -7,7 +7,7 @@ const userRouter = express.Router();
 // Users resource endpoints
 userRouter.route('/')
 // GET all users
-.get(getUsers)
+.get(authenticateToken, getUsers)
 // POST new user
 .post(postUser);
 

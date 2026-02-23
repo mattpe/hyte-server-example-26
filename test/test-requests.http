@@ -1,8 +1,7 @@
 # Test HTTP requests
 ### use with: REST Client extension
 @apiurl = http://localhost:3000/api
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6ImJvYl9icm93biIsImVtYWlsIjoiYm9iQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDEtMDVUMDU6NDU6MDAuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzcxODQ1MjI3LCJleHAiOjE3NzE5MzE2Mjd9.tL5ZxJLJiYWYpiMqlZrnNrEaUsa9wa5J4AilLJSFYz8
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJ1c2VybmFtZSI6ImRvbmFsZDIiLCJlbWFpbCI6ImRvbmFsZDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yM1QxMjowMzozNS4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NzE4NTIwNjUsImV4cCI6MTc3MTkzODQ2NX0.wpJMjMd9kNJzrqDarvI1A7YO9DKSjhMXMCUtE6zAq2g
 ### GET all items
 GET {{apiurl}}/items
 
@@ -27,7 +26,11 @@ Content-Type: application/json
 ##############################
 ### users endpoints
 
-### Get all users
+### Get all users (with token)
+GET {{apiurl}}/users
+Authorization: Bearer {{token}}
+
+### Get all users (FAIL without token)
 GET {{apiurl}}/users
 
 ### Register new user
@@ -66,11 +69,16 @@ Authorization: Bearer {{token}}
 ##############################
 ### Diary entry endpoints
 
-### Get all entries
+### Get all entries (by user id in token)
 GET {{apiurl}}/entries
+Authorization: Bearer {{token}}
 
 ### Get entry by id
 GET {{apiurl}}/entries/6
+
+### Delete entry by id
+DELETE {{apiurl}}/entries/6
+Authorization: Bearer {{token}}
 
 ### Post new entry
 POST {{apiurl}}/entries

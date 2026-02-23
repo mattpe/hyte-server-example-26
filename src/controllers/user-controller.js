@@ -1,24 +1,20 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {addUser, findUserByUsername} from '../models/user-model.js';
+import {addUser, findUserByUsername, listAllUsers} from '../models/user-model.js';
 
 // TODO: lisää tietokantafunktiot user modeliin
 // ja käytä niitä täällä
 
-// TODO: refaktoroi tietokantafunktiolle
-const getUsers = (req, response) => {
-  // ÄLÄ IKINÄ lähetä salasanoja HTTP-vastauksessa
-  for (let i = 0; i < users.length; i++) {
-    delete users[i].password;
-    // kaikki emailit sensuroitu esimerkki
-    // users[i].email = 'sensored';
-  }
-  response.json(users);
-};
-
 // TODO: getUserById
 // TODO: putUserById
 // TODO: deleteUserById
+
+
+const getUsers = async (req, response) => {
+  const users = await listAllUsers();
+  response.json(users);
+};
+
 
 // Käyttäjän lisäys (rekisteröityminen)
 const postUser = async (pyynto, vastaus) => {

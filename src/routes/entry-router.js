@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  deleteEntry,
   getEntries,
   getEntryById,
   postEntry,
@@ -8,10 +9,14 @@ import {authenticateToken} from '../middlewares/authentication.js';
 
 const entryRouter = express.Router();
 
-entryRouter.route('/')
-  .get(getEntries)
+entryRouter
+  .route('/')
+  .get(authenticateToken, getEntries)
   .post(authenticateToken, postEntry);
 
-entryRouter.route('/:id').get(getEntryById);
+entryRouter
+  .route('/:id')
+  .get(getEntryById)
+  .delete(authenticateToken, deleteEntry);
 
 export default entryRouter;
