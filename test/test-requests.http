@@ -1,7 +1,7 @@
 # Test HTTP requests
 ### use with: REST Client extension
 @apiurl = http://localhost:3000/api
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6ImJvYl9icm93biIsImVtYWlsIjoiYm9iQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDEtMDVUMDU6NDU6MDAuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzcwNjQwNzUzLCJleHAiOjE3NzA3MjcxNTN9.0c3R1r0jZWRmVRZkIsBPiqWkwsKj62BEzdkVVfpdzjo
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6ImJvYl9icm93biIsImVtYWlsIjoiYm9iQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDEtMDVUMDU6NDU6MDAuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzcxODQ1MjI3LCJleHAiOjE3NzE5MzE2Mjd9.tL5ZxJLJiYWYpiMqlZrnNrEaUsa9wa5J4AilLJSFYz8
 
 ### GET all items
 GET {{apiurl}}/items
@@ -35,9 +35,9 @@ POST {{apiurl}}/users
 Content-Type: application/json
 
 {
-  "username": "donald",
+  "username": "donald2",
   "password": "duck",
-  "email": "donald@example.com"
+  "email": "donald2@example.com"
 }
 
 ### Register new user FAIL (email missing)
@@ -54,8 +54,8 @@ POST {{apiurl}}/users/login
 Content-Type: application/json
 
 {
-  "username": "bob_brown",
-  "password": "hashed_password"
+  "username": "donald2",
+  "password": "duck"
 }
 
 ### Get user info by token

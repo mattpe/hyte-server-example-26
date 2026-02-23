@@ -1,8 +1,6 @@
-// HUOM: mokkidata on poistettu modelista
-//import users from '../models/user-model.js';
-
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {findUserByUsername} from '../models/user-model.js';
+import {addUser, findUserByUsername} from '../models/user-model.js';
 
 // TODO: lisää tietokantafunktiot user modeliin
 // ja käytä niitä täällä
@@ -23,24 +21,23 @@ const getUsers = (req, response) => {
 // TODO: deleteUserById
 
 // Käyttäjän lisäys (rekisteröityminen)
-// TODO: refaktoroi tietokantafunktiolle
-const postUser = (pyynto, vastaus) => {
+const postUser = async (pyynto, vastaus) => {
   const newUser = pyynto.body;
   // Uusilla käyttäjillä pitää olla kaikki vaaditut ominaisuudet tai palautetaan virhe
   // itse koodattu erittäin yksinkertainen syötteen validointi
   if (!(newUser.username && newUser.password && newUser.email)) {
     return vastaus.status(400).json({error: 'required fields missing'});
   }
-
   // HUOM: ÄLÄ ikinä loggaa käyttäjätietoja ensimmäisten pakollisten testien jälkeen!!! (tietosuoja)
   //console.log('registering new user', newUser);
-  const newId = users[users.length - 1].id + 1;
-  // luodaan uusi objekti, joka sisältää id-ominaisuuden ja kaikki newUserObjektin
-  // ominaisuudet ja lisätään users-taulukon loppuun
-  users.push({id: newId, ...newUser});
-  delete newUser.password;
-  // console.log('users', users);
-  vastaus.status(201).json({message: 'new user added', user_id: newId});
+
+  // Lasketaan salasanasta tiiviste (hash)
+  const hash = await bcrypt.hash(newUser.password, 10);
+  //console.log('salasanatiiviste:', hash);
+  // Korvataan selväkielinen salasana tiivisteellä ennen kantaan tallennusta
+  newUser.password = hash;
+  const newUserId = await addUser(newUser);
+  vastaus.status(201).json({message: 'new user added', user_id: newUserId});
 };
 
 // Tietokantaversio valmis
@@ -50,7 +47,8 @@ const postLogin = async (req, res) => {
   const user = await findUserByUsername(username);
   //console.log('postLogin user from db', user);
   if (user) {
-    if (user.password === password) {
+    // jos asiakkaalta tullut salasana vastaa tietokannasta haettua tiivistettä, ehto on tosi
+    if (await bcrypt.compare(password, user.password)) {
       delete user.password;
       // generate & sign token using a secret and expiration time
       // read from .env file
@@ -68,6 +66,5 @@ const postLogin = async (req, res) => {
 const getMe = (req, res) => {
   res.json(req.user);
 };
-
 
 export {getUsers, postUser, postLogin, getMe};
