@@ -1,4 +1,5 @@
 import express from 'express';
+import {body} from 'express-validator';
 import {
   deleteEntry,
   getEntries,
@@ -12,7 +13,7 @@ const entryRouter = express.Router();
 entryRouter
   .route('/')
   .get(authenticateToken, getEntries)
-  .post(authenticateToken, postEntry);
+  .post(authenticateToken, body(), postEntry);
 
 entryRouter
   .route('/:id')

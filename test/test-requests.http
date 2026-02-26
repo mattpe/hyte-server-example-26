@@ -1,7 +1,7 @@
 # Test HTTP requests
 ### use with: REST Client extension
 @apiurl = http://localhost:3000/api
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJ1c2VybmFtZSI6ImRvbmFsZDIiLCJlbWFpbCI6ImRvbmFsZDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yM1QxMjowMzozNS4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NzE4NTIwNjUsImV4cCI6MTc3MTkzODQ2NX0.wpJMjMd9kNJzrqDarvI1A7YO9DKSjhMXMCUtE6zAq2g
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJ1c2VybmFtZSI6ImRvbmFsZDIiLCJlbWFpbCI6ImRvbmFsZDJAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNi0wMi0yM1QxMjowMzozNS4wMDBaIiwidXNlcl9sZXZlbCI6InJlZ3VsYXIiLCJpYXQiOjE3NzIwOTI5ODUsImV4cCI6MTc3MjE3OTM4NX0.WyWlZfBk0jIcIDfVuTu6UeSP2EhJvCiEe2vTHwH8XKI
 ### GET all items
 GET {{apiurl}}/items
 
@@ -77,7 +77,7 @@ Authorization: Bearer {{token}}
 GET {{apiurl}}/entries/6
 
 ### Delete entry by id
-DELETE {{apiurl}}/entries/6
+DELETE {{apiurl}}/entries/9
 Authorization: Bearer {{token}}
 
 ### Post new entry
