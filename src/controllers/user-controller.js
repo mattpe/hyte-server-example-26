@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {validationResult} from 'express-validator';
 import {
   addUser,
   findUserByUsername,
@@ -22,14 +21,6 @@ const getUsers = async (req, response) => {
 // Käyttäjän lisäys (rekisteröityminen)
 const postUser = async (pyynto, vastaus) => {
   const newUser = pyynto.body;
-  // Uusilla käyttäjillä pitää olla kaikki vaaditut ominaisuudet tai palautetaan virhe
-  const errors = validationResult(pyynto);
-  //console.log('postUser validation errors', errors);
-  if (!errors.isEmpty()) {
-    return vastaus
-      .status(400)
-      .json({message: 'invalid input data', errors: errors.array()});
-  }
 
   // HUOM: ÄLÄ ikinä loggaa käyttäjätietoja ensimmäisten pakollisten testien jälkeen!!! (tietosuoja)
   //console.log('registering new user', newUser);

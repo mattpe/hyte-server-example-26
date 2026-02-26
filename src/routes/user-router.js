@@ -7,6 +7,7 @@ import {
   postUser,
 } from '../controllers/user-controller.js';
 import {authenticateToken} from '../middlewares/authentication.js';
+import {validationErrorHandler} from '../middlewares/error-handlers.js';
 
 const userRouter = express.Router();
 
@@ -20,6 +21,7 @@ userRouter
     body('username').trim().isLength({min: 3, max: 20}).isAlphanumeric(),
     body('password').trim().isLength({min: 8, max: 100}),
     body('email').trim().isEmail(),
+    validationErrorHandler,
     postUser,
   );
 
