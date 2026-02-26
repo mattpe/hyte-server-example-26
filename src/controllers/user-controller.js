@@ -1,6 +1,11 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {addUser, findUserByUsername, listAllUsers} from '../models/user-model.js';
+import {validationResult} from 'express-validator';
+import {
+  addUser,
+  findUserByUsername,
+  listAllUsers,
+} from '../models/user-model.js';
 
 // TODO: lisää tietokantafunktiot user modeliin
 // ja käytä niitä täällä
@@ -9,21 +14,23 @@ import {addUser, findUserByUsername, listAllUsers} from '../models/user-model.js
 // TODO: putUserById
 // TODO: deleteUserById
 
-
 const getUsers = async (req, response) => {
   const users = await listAllUsers();
   response.json(users);
 };
 
-
 // Käyttäjän lisäys (rekisteröityminen)
 const postUser = async (pyynto, vastaus) => {
   const newUser = pyynto.body;
   // Uusilla käyttäjillä pitää olla kaikki vaaditut ominaisuudet tai palautetaan virhe
-  // itse koodattu erittäin yksinkertainen syötteen validointi
-  if (!(newUser.username && newUser.password && newUser.email)) {
-    return vastaus.status(400).json({error: 'required fields missing'});
+  const errors = validationResult(pyynto);
+  //console.log('postUser validation errors', errors);
+  if (!errors.isEmpty()) {
+    return vastaus
+      .status(400)
+      .json({message: 'invalid input data', errors: errors.array()});
   }
+
   // HUOM: ÄLÄ ikinä loggaa käyttäjätietoja ensimmäisten pakollisten testien jälkeen!!! (tietosuoja)
   //console.log('registering new user', newUser);
 

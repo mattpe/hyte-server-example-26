@@ -38,9 +38,9 @@ POST {{apiurl}}/users
 Content-Type: application/json
 
 {
-  "username": "donald2",
-  "password": "duck",
-  "email": "donald2@example.com"
+  "username": "diidaaba",
+  "password": "duckpass",
+  "email": "d@example.com"
 }
 
 ### Register new user FAIL (email missing)
