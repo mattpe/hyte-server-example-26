@@ -28,10 +28,13 @@ const getEntryById = async (req, res) => {
   }
 };
 
-const postEntry = async (req, res) => {
+const postEntry = async (req, res, next) => {
+
   const {entry_date, mood, weight, sleep_hours, notes} = req.body;
   // user property (& id) is added to req by authentication middleware
   const user_id = req.user.user_id;
+
+  // TODO: replace with validation middleware in entry router
   if (entry_date && (weight || mood || sleep_hours || notes) && user_id) {
     const result = await addEntry({user_id, ...req.body});
     if (result.entry_id) {
