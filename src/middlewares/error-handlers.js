@@ -36,6 +36,7 @@ const notFoundHandler = (req, res, next) => {
 /**
 * Custom default middleware for handling errors
 */
+// eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
   res.status(err.status || 500); // default is 500 if err.status is not defined
   res.json({

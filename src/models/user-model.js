@@ -23,11 +23,11 @@ const addUser = async (user) => {
     return {user_id: result[0].insertId};
   } catch (e) {
     console.error('error', e.message);
-    return {error: e.message};
+    throw new Error(e);
   }
 };
 
-// Huom: virheenkäsittely puuttuu
+// Huom: virheenkäsittely puuttuu, mutta sen voi tehdä myös kontrollerissa
 const findUserByUsername = async (username) => {
   const sql = 'SELECT * FROM Users WHERE username = ?';
   const [rows] = await promisePool.execute(sql, [username]);

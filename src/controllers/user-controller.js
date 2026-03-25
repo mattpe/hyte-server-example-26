@@ -30,8 +30,14 @@ const postUser = async (pyynto, vastaus) => {
   //console.log('salasanatiiviste:', hash);
   // Korvataan selväkielinen salasana tiivisteellä ennen kantaan tallennusta
   newUser.password = hash;
-  const newUserId = await addUser(newUser);
-  vastaus.status(201).json({message: 'new user added', user_id: newUserId});
+  try {
+    const newUserId = await addUser(newUser);
+    vastaus.status(201).json({message: 'new user added', user_id: newUserId});
+  } catch (error) {
+    // uuden virheen heittäminen käsitellään oletus error handlerilla
+    // vaihtoehto next(error) käyttöön
+    throw new Error(error.message);
+  }
 };
 
 // Tietokantaversio valmis
