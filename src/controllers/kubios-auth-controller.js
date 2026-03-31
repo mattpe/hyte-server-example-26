@@ -15,7 +15,7 @@
  import jwt from 'jsonwebtoken';
  import fetch from 'node-fetch';
  import {v4} from 'uuid';
- //import {customError} from '../middlewares/error-handler.js';
+ import {customError} from '../middlewares/error-handlers.js';
  // customError function not created in this project
  import {
    addUser,
@@ -64,7 +64,7 @@
    // console.log(location);
    // If login fails, location contains 'login?null'
    if (location.includes('login?null')) {
-     throw new Error(
+     throw customError(
        'Login with Kubios failed due bad username/password',
        401,
      );

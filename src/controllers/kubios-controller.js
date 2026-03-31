@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
- // import {customError} from '../middlewares/error-handler.js';
+//import {customError} from '../middlewares/error-handlers.js';
 
  // Kubios API base URL should be set in .env
  const baseUrl = process.env.KUBIOS_API_URI;
@@ -12,7 +12,7 @@ import fetch from 'node-fetch';
  * @param {Response} res
  * @param {NextFunction} next
  */
- const getUserData = async (req, res, next) => {
+ const getUserData = async (req, res) => {
    const {kubiosIdToken} = req.user;
    const headers = new Headers();
    headers.append('User-Agent', process.env.KUBIOS_USER_AGENT);
@@ -44,7 +44,7 @@ import fetch from 'node-fetch';
  * @param {Response} res
  * @param {NextFunction} next
  */
- const getUserInfo = async (req, res, next) => {
+ const getUserInfo = async (req, res) => {
    const {kubiosIdToken} = req.user;
    const headers = new Headers();
    headers.append('User-Agent', process.env.KUBIOS_USER_AGENT);
