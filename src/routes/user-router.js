@@ -1,13 +1,16 @@
 import express from 'express';
 import {body} from 'express-validator';
-import {
-  getMe,
-  getUsers,
-  postLogin,
-  postUser,
-} from '../controllers/user-controller.js';
 import {authenticateToken} from '../middlewares/authentication.js';
 import {validationErrorHandler} from '../middlewares/error-handlers.js';
+
+// käytetään kubios auth controlleria kirjautumiseen vanhan user controllerin sijasta
+import {
+  getUsers,
+//  getMe,
+//  postLogin,
+  postUser,
+} from '../controllers/user-controller.js';
+import {postLogin, getMe} from '../controllers/kubios-auth-controller.js';
 
 const userRouter = express.Router();
 
