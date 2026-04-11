@@ -251,6 +251,80 @@ figcaption {
     text-decoration: underline;
 }
 
+/* ---------- LOGIN PAGE ---------- */
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.login-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-card h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-dark);
+}
+
+/* FORM */
+.form-group {
+    text-align: left;
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+}
+
+/* BUTTON FULL WIDTH */
+.btn-full {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* FOOTER TEXT */
+.login-footer {
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+}
+
+.login-footer a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
 /* responsiivisuus */
 
 /*tabletit*/
