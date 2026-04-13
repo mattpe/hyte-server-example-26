@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import itemRouter from './routes/item-router.js';
 import userRouter from './routes/user-router.js';
 import requestLogger from './middlewares/logger.js';
 import entryRouter from './routes/entry-router.js';
