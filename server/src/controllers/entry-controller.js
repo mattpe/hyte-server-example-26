@@ -10,7 +10,8 @@ const getEntries = async (req, res) => {
   // haetaan kaikkien käyttäjien merkinnät
   //const result = await listAllEntries();
   // haetaan kirjautuneen (token) käyttäjän omat merkinnät
-  const result = await listAllEntriesByUserId(req.user.user_id);
+  console.log('User ID from token:', req.user.userId);
+  const result = await listAllEntriesByUserId(req.user.userId);
   if (!result.error) {
     res.json(result);
   } else {
@@ -32,7 +33,7 @@ const postEntry = async (req, res) => {
 
   const {entry_date, mood, weight, sleep_hours, notes} = req.body;
   // user property (& id) is added to req by authentication middleware
-  const user_id = req.user.user_id;
+  const user_id = req.user.userId;
 
   // TODO: replace with validation middleware in entry
   if (entry_date && (weight || mood || sleep_hours || notes) && user_id) {
@@ -55,7 +56,7 @@ const putEntry = (req, res) => {
 };
 
 const deleteEntry = async (req, res) => {
-  const affectedRows = await removeEntryById(req.params.id, req.user.user_id);
+  const affectedRows = await removeEntryById(req.params.id, req.user.userId);
   if (affectedRows > 0) {
     res.json({message: 'entry deleted'});
   } else {

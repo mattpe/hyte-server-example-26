@@ -1,4 +1,6 @@
 node_modules/
 .DS_Store
 .env
-secret-requests.http
+
+# website folder contents are generated with build script when needed
+server/public

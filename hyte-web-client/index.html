@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/main.js" defer></script>
+    <title>Hyte web client demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Hyte web client demo</h1>
+      </header>
+      <main>
+        <section id="login-section">
+          <h2>Login</h2>
+          <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            <br />
+            <button type="submit">Login</button>
+          </form>
+        </section>
+        <section id="welcome-message" style="display: none;">
+          <h2>Welcome, <span id="user-name"></span>!</h2>
+          <button id="logout">Logout</button>
+        </section>
+        <section id="entries" style="display: none;">
+        </section>
+      </main>
+      <footer>
+        <p>Simple SPA client &copy; teacher</p>
+      </footer>
+    </div>
+    <!-- <script type="module" src="/src/main.js"></script> -->
+  </body>
+</html>

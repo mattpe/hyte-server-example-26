@@ -1,25 +1,7 @@
 # Test HTTP requests
 ### use with: REST Client extension
 @apiurl = http://localhost:3000/api
-@token = add-token-from-login-response-here
-
-### GET item with id 1
-GET {{apiurl}}/items/1
-
-### Add new item
-POST {{apiurl}}/items
-Content-Type: application/json
-
-{"name": "Mandariini", "weight": 86}
-
-### Delete item with id 2
-DELETE {{apiurl}}/items/2
-
-### Update item with id 1
-PUT {{apiurl}}/items/1
-Content-Type: application/json
-
-{"name": "updated Omena"}
+@token = copy-token-from-login-response
 
 ##############################
 ### users endpoints
@@ -84,7 +66,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "entry_date": "2026-02-04",
+  "entry_date": "2026-04-08",
   "mood": "really happy",
   "weight": 66,
   "sleep_hours": 5,
