@@ -3,4 +3,5 @@ node_modules/
 .env
 
 # website folder contents are generated with build script when needed
-server/public
+server/public/*
+!server/public/.gitkeep
