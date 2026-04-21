@@ -20,6 +20,8 @@ const setLoggedIn = (user, token) => {
   user = {...user, token};
   document.getElementById('welcome-message').style.display = 'block';
   document.getElementById('entries').style.display = 'block';
+  document.getElementById('kubios-data').style.display = 'block';
+  document.getElementById('fetch-kubios-data').style.display = 'block';
   document.getElementById('user-name').textContent = user.username;
   document.getElementById('login-section').style.display = 'none';
 };
@@ -33,6 +35,8 @@ const setLoggedOut = () => {
   entries.length = 0; // Clear entries on logout
   document.getElementById('welcome-message').style.display = 'none';
   document.getElementById('entries').style.display = 'none';
+  document.getElementById('kubios-data').style.display = 'none';
+  document.getElementById('fetch-kubios-data').style.display = 'none';
   document.getElementById('login-section').style.display = 'block';
 };
 

@@ -54,7 +54,7 @@ button:hover {
   background-color: #0056b3;
 }
 
-#entries {
+#entries, #kubios-data {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;

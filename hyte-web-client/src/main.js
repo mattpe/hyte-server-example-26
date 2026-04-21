@@ -1,6 +1,7 @@
 import './style.css';
 import {fetchData} from './fetch';
 import {setLoggedOut, testToken, user} from './state';
+import {getKubiosData, renderKubiosData} from './kubios';
 
 // Test the token on page load to set the initial state
 testToken();
@@ -34,4 +35,12 @@ document.getElementById('logout').addEventListener('click', () => {
   setLoggedOut();
   console.log('User after logout:', user);
   alert('Logged out!');
+});
+
+// Handle fetch kubios data button click
+document.getElementById('fetch-kubios-data').addEventListener('click', async () => {
+  const token = localStorage.getItem('token');
+  const kubiosData = await getKubiosData(token);
+  console.log('Kubios data fetched on button click:', kubiosData);
+  renderKubiosData(kubiosData.results);
 });

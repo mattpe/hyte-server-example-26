@@ -1,6 +1,6 @@
 /**
- * This module provides functions to interact with the diary entries API of the Hyte server.
- *
+ * Provides functions to interact with the diary entries API of the Hyte server and to render the entries in the UI.
+ * @module entries
  */
 import {fetchData} from './fetch';
 
@@ -20,8 +20,8 @@ const getEntries = async (token) => {
 /**
  * Posts a new entry for the logged-in user.
  * @param {string} token - The authentication token.
- * @param {object} entryData - The data for the new entry.
- * @returns {Promise<object>} A promise resolving to the created entry.
+ * @param {Object} entryData - The data for the new entry.
+ * @returns {Promise<Object>} A promise resolving to the created entry.
  */
 const postEntry = async (token, entryData) => {
   const response = await fetchData('/entries', {
@@ -42,7 +42,7 @@ const postEntry = async (token, entryData) => {
  */
 const renderEntries = (entries) => {
   const entriesContainer = document.getElementById('entries');
-  entriesContainer.innerHTML = ''; // Clear existing entries
+  entriesContainer.innerHTML = '<h2>Diary Entries</h2>'; // Clear existing entries
   entries.forEach(entry => {
     const entryElement = document.createElement('div');
     entryElement.className = 'entry';
