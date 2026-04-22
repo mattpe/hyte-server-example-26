@@ -22,9 +22,12 @@ app.use('/', express.static('public'));
 // app.use(requestLogger);
 
 // APIn root-reitti, tässä voisi julkaista esim. API:n dokumentaation
-app.get('/api', (req, res) => {
-  res.send('Teacher example Health Diary API! Routes available: /api/users, /api/entries, /api/kubios');
-});
+app.use('/api', express.static('docs'));
+
+// old
+//app.get('/api', (req, res) => {
+//  res.send('Teacher example Health Diary API! Routes available: /api/users, /api/entries, /api/kubios');
+//});
 
 // Users resource router for all /api/users routes
 app.use('/api/users', userRouter);

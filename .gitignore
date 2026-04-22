@@ -1,6 +1,7 @@
 node_modules/
 .DS_Store
 .env
+docs/
 
 # website folder contents are generated with build script when needed
 server/public/*
